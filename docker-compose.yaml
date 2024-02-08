@@ -1,0 +1,13 @@
+version: '2'
+services:
+  spicedb.local:
+    ports:
+      - "50051:50051"
+    command: serve
+    volumes:
+      - "./spicedb_bootstrap.yaml:/mnt/spicedb_bootstrap.yaml"
+    environment:
+      - "SPICEDB_GRPC_PRESHARED_KEY=sharedkey"
+      - "SPICEDB_DATASTORE_BOOTSTRAP_FILES=/mnt/spicedb_bootstrap.yaml"
+
+    image: "authzed/spicedb:v1.29.1" #any SpiceDB image will do
